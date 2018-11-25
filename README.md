@@ -143,5 +143,63 @@ Swift complier contains these phases: <br />
 * __SIL Optimizations__: ([lib/Analysis](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Analysis), [lib/ARC](https://github.com/apple/swift/tree/master/lib/SILOptimizer/ARC), [lib/LoopTransforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/LoopTransforms) and [lib/Transforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Transforms)) perform additional high-level, Swift-specific optimizations to the program, including (for example) Automatic Reference Counting optimizations, devirtualization, and generic specialization.
 * __LLVM IR Generation__: Intermediate Representation (IR) generation ([lib/IRGen](https://github.com/apple/swift/tree/master/lib/IRGen)) lowers SIL to LLVM IR, at which point LLVM can continue to optimize it and generate machine code.
 ### Create a project 
-In order to create a Swift project, __XCode__ and __the REPL__ are required. More information on how to install _repl_ and create a project can be retrieved [here](http://www.aidanf.net/learn-swift/running_code).
+In order to create a Swift project, __XCode__ and __the REPL__ are required. More information on how to install _repl_ and _create a project_ can be retrieved [here](http://www.aidanf.net/learn-swift/running_code).
 
+## About standard library
+Standard library of Swift can be devided into:
+* __Standard library core__: ([stdlib/public/core](https://github.com/apple/swift/tree/master/stdlib/public/core)) includes the definitions of all of the data types, protocols, functions, etc.
+* __Runtime__: ([stdlib/public/runtime](https://github.com/apple/swift/tree/master/stdlib/public/runtime)) is a layer between the copmiler and the core standard library. It is reponsible for implementing many of the dynamic features of the language, such as casting (such as _as!_ and _as?_ operators), type metadata (to support generics and reflection), and memory management (object allocation, reference counting, etc.). The runtime is written mostly in C++ or (where needed for interoperability) Objective-C.
+* __SDK Overlays__: ([stdlib/public/SDK](https://github.com/apple/swift/tree/master/stdlib/public/SDK)) provide Swift-specific additions and modifications to existing Objective-C frameworks to improve their mapping into Swift. In particular, the _Foundation_ overlay provides additional support for interoperability with Objective-C code.
+### Examples about Standard Library Core
+#### Closure Expression
+__Closure Expression__ is a shorter version of function-like constructs without a full declaration and name. This is a way to write inline closures in a brief, focused syntax. Closure expressions provide several syntax optimizations for writing closures in a shortened form without loss or clarity or intent. <br /> 
+Syntax: ``{ (parameters) -> (return type) in (statements) }`` <br />
+Example below illustrates Closure Expression by breaking down the function using `sorted(by:)` method:  
+```swift
+let names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+
+//normal thinking
+func backward(_ s1: String, _ s2: String) -> Bool {
+    return s1 > s2
+}
+
+var reversedNames = names.sorted(by: backward)
+//return [Ewa, Daniella, Chris, Barry, Alex]
+
+//Closure expression
+reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in
+    return s1 > s2
+})
+//also return [Ewa, Daniella, Chris, Barry, Alex]
+```
+__Shorthand Arguments__ used to refer to the values of closures' arguments by the names `$0, $1, $2` and so on. <br />
+```swift
+reversedNames = names.sorted(by: { $0 > $1 } )
+//easier to reaed and understand
+```
+Notice that the `in` keyword can also be omitted when using shorthand arguments, because closure expression is made up entirely of its body. <br />
+Example: 
+```swift
+var add = { (arg1: Int, arg2: Int) -> Int in
+    return arg1 + arg2
+}
+add = { (arg1, arg2) -> Int in
+    return arg1 + arg2
+}
+add = { arg1, arg2 in
+    arg1 + arg2
+}
+add = {
+    $0 + $1
+}
+
+let result = add(20, 20) // 40
+```
+_Shorthand closure expression_ is very useful in terms of readibility and efficiency. <br />
+Swift also supports some built-in functions such as: `filter`, `reduce`, and `map`. <br />
+__Filter__: loop over a collection and returns the value that matches the comparsion.
+``swift
+let digits = [1,4,10,15]
+let even = digits.filter { $0 % 2 == 0 }
+// [4, 10]
+``
