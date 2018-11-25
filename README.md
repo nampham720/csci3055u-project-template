@@ -197,9 +197,26 @@ let result = add(20, 20) // 40
 ```
 _Shorthand closure expression_ is very useful in terms of readibility and efficiency. <br />
 Swift also supports some built-in functions such as: `filter`, `reduce`, and `map`. <br />
-__Filter__: loop over a collection and returns the value that matches the comparsion.
-``swift
+__Filter__: loop over a collection and returns the value that matches the condition(s).
+```swift
 let digits = [1,4,10,15]
 let even = digits.filter { $0 % 2 == 0 }
 // [4, 10]
-``
+```
+__Map__: loops over a collection and appies the function on each element. Map returns an array containing the results.
+```swift
+let peopleArray = [ Person(name:"Santosh", address: "Pune, India", age:34, income: 100000.0, cars:["i20","Swift VXI"]),
+             Person(name: "John", address:"New York, US", age: 23, income: 150000.0, cars:["Crita", "Swift VXI"]),
+             Person(name:"Amit", address:"Nagpure, India", age:17, income: 200000.0, cars:Array())]
+
+var name: [String] = Array()
+let cars = peopleArray.map({ $0.cars })
+print(cars)
+// Result: [["i20", "Swift VXI"], ["Crita", "Swift VXI"], []]
+```
+__flatMap__: same as _map_ but returns an array contaning the concatenated results and will ignore _nil_ values.  
+```swift
+let flatCars = peopleArray.flatMap({ $0.cars })
+print("Flatmap: \(flatCars)")
+// Result: Flatmap: ["i20", "Swift VXI", "Crita", "Swift VXI"]
+```
