@@ -143,5 +143,5 @@ Swift complier contains these phases: <br />
 * __SIL Optimizations__: ([lib/Analysis](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Analysis), [lib/ARC](https://github.com/apple/swift/tree/master/lib/SILOptimizer/ARC), [lib/LoopTransforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/LoopTransforms) and [lib/Transforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Transforms)) perform additional high-level, Swift-specific optimizations to the program, including (for example) Automatic Reference Counting optimizations, devirtualization, and generic specialization.
 * __LLVM IR Generation__: Intermediate Representation (IR) generation ([lib/IRGen](https://github.com/apple/swift/tree/master/lib/IRGen)) lowers SIL to LLVM IR, at which point LLVM can continue to optimize it and generate machine code.
 ### Create a project 
-In order to create a Swift project, __XCode__ and __the REPL__ are required (more information can be retrieved [here](http://www.aidanf.net/learn-swift/running_code)).
+In order to create a Swift project, __XCode__ and __the REPL__ are required. More information on how to install _repl_ and create a project can be retrieved [here](http://www.aidanf.net/learn-swift/running_code).
 
