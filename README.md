@@ -92,4 +92,38 @@ func sayHelloWorld() -> String {
 print(sayHelloWorld())
 // Prints "hello, world"
 ```
+Function is quite dynamic in Swift. A function can take another function as a parameter, have multiple return types (or zero). _Optinals_ can be used as a return type <br />
+```swift
+// A function with no return value
+func greet(person: String) 
+    {
+        print("Hello, \(person)!")
+    }
 
+// A function takes another function as parameter
+func printAndCount(string: String) -> Int {
+    print(string)
+    return string.count
+}
+func printWithoutCounting(string: String) {
+    let _ = printAndCount(string: string)
+}
+
+// A function has multiple return types
+func minMax(array: [Int]) -> (min: Int, max: Int) {
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+
+// A function with optonals return type
+func minMax(array: [Int]) -> (min: Int, max: Int)? { *sam as above * } 
+// This will return nil when the array is empty
+```
