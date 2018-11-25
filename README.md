@@ -124,11 +124,18 @@ func minMax(array: [Int]) -> (min: Int, max: Int) {
 }
 
 // A function with optonals return type
-func minMax(array: [Int]) -> (min: Int, max: Int)? { *sam as above * } 
+func minMax(array: [Int]) -> (min: Int, max: Int)? { *same as above* } 
 // This will return nil when the array is empty
 ```
 Arguments of function in Swift can be labeled or omitted. <br />
 Syntax to label parameter: ``func <name>(label <paratmeter>: <type>) {}`` <br />
 Syntax to omit parameter: ``func <name>(_ <paratmeter>: <type>) {}``<br />
 ## About the tools
+### Compiler
+Swift complier contains these phases: <br />
+* __Parser__: ([lib/Parse](https://github.com/apple/swift/tree/master/lib/Parse)) takes the products from _Lexical Anlysis_ phase (convert everything into words and tokens). Parser is responsible for generating an _Abstract Syntax Tree (AST)_, then identifying the roles, group such products together so that the codes make sense. 
+* __Semantic Analyser__: ([lib/Sema](https://github.com/apple/swift/tree/master/lib/Sema)) is responsible for taking the parsed AST and transforming it into a well-formed, fully-type-checked form of the AST. It can also do some programme bindings. 
+* __Clang importer__: ([lib/ClangImporter](https://github.com/apple/swift/tree/master/lib/ClangImporter)) imports [Clang modules](http://clang.llvm.org/docs/Modules.html) and masp the C or Objective-C APIs they export into their corresponding Swift APIs. The resulting imported ASTs can be reffered to by semantic analysis.
+* __SIL generation__: The Swift Intermediate Language (SIL) is a high-level, Swift-specific intermediate language suitable for further analysis and optimization of Swift code. The phase (implemented in [lib/SILGen](https://github.com/apple/swift/tree/master/lib/SILGen) lowers the type-checked AST into so-called "raw" SIL. The design of SIL is described in [docs/SIL.rst](https://github.com/apple/swift/blob/master/docs/SIL.rst).
+
 
