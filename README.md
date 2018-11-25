@@ -133,9 +133,12 @@ Syntax to omit parameter: ``func <name>(_ <paratmeter>: <type>) {}``<br />
 ## About the tools
 ### Compiler
 Swift complier contains these phases: <br />
+#### Frontend Compiler
 * __Parser__: ([lib/Parse](https://github.com/apple/swift/tree/master/lib/Parse)) takes the products from _Lexical Anlysis_ phase (convert everything into words and tokens). Parser is responsible for generating an _Abstract Syntax Tree (AST)_, then identifying the roles, group such products together so that the codes make sense. 
 * __Semantic Analyser__: ([lib/Sema](https://github.com/apple/swift/tree/master/lib/Sema)) is responsible for taking the parsed AST and transforming it into a well-formed, fully-type-checked form of the AST. It can also do some programme bindings. 
-* __Clang importer__: ([lib/ClangImporter](https://github.com/apple/swift/tree/master/lib/ClangImporter)) imports [Clang modules](http://clang.llvm.org/docs/Modules.html) and masp the C or Objective-C APIs they export into their corresponding Swift APIs. The resulting imported ASTs can be reffered to by semantic analysis.
+* __Clang importer__: ([lib/ClangImporter](https://github.com/apple/swift/tree/master/lib/ClangImporter)) imports [Clang modules](http://clang.llvm.org/docs/Modules.html) and maps the C or Objective-C APIs they export into their corresponding Swift APIs. The resulting imported ASTs can be reffered to by semantic analysis.
+#### Backend Compiler
 * __SIL generation__: The Swift Intermediate Language (SIL) is a high-level, Swift-specific intermediate language suitable for further analysis and optimization of Swift code. The phase (implemented in [lib/SILGen](https://github.com/apple/swift/tree/master/lib/SILGen) lowers the type-checked AST into so-called "raw" SIL. The design of SIL is described in [docs/SIL.rst](https://github.com/apple/swift/blob/master/docs/SIL.rst).
-
-
+* __SIL guaranteed transformation__: ([lib/SILOptimizer/Mandatory](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Mandatory)) perform additional dataflow diagnostics that affect the correctness of a program (such as a use of uninitialized variables). The end result of these transformations is “canonical” SIL. 
+* __SIL Optimizations__: ([lib/Analysis](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Analysis), [lib/ARC](https://github.com/apple/swift/tree/master/lib/SILOptimizer/ARC), [lib/LoopTransforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/LoopTransforms) and [lib/Transforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Transforms)) perform additional high-level, Swift-specific optimizations to the program, including (for example) Automatic Reference Counting optimizations, devirtualization, and generic specialization.
+* __LLVM IR Generation__: Intermediate Representation (IR) generation ([lib/IRGen](https://github.com/apple/swift/tree/master/lib/IRGen)) lowers SIL to LLVM IR, at which point LLVM can continue to optimize it and generate machine code.
