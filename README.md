@@ -127,3 +127,8 @@ func minMax(array: [Int]) -> (min: Int, max: Int) {
 func minMax(array: [Int]) -> (min: Int, max: Int)? { *sam as above * } 
 // This will return nil when the array is empty
 ```
+Arguments of function in Swift can be labeled or omitted. <br />
+Syntax to label parameter: ``func <name>(label <paratmeter>: <type>) {}`` <br />
+Syntax to omit parameter: ``func <name>(_ <paratmeter>: <type>) {}``<br />
+## About the tools
+
