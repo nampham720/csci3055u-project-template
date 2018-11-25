@@ -197,7 +197,7 @@ let result = add(20, 20) // 40
 ```
 _Shorthand closure expression_ is very useful in terms of readibility and efficiency. <br />
 Swift also supports some built-in functions such as: `filter`, `reduce`, and `map`. <br />
-__Filter__: loop over a collection and returns the value that matches the condition(s).
+__Filter__: loops over a collection and returns the value that matches the condition(s).
 ```swift
 let digits = [1,4,10,15]
 let even = digits.filter { $0 % 2 == 0 }
@@ -220,3 +220,8 @@ let flatCars = peopleArray.flatMap({ $0.cars })
 print("Flatmap: \(flatCars)")
 // Result: Flatmap: ["i20", "Swift VXI", "Crita", "Swift VXI"]
 ```
+__reduce(initialResult, nextPartialRestul)__: returns the result of combining the elements of the sequence using the given closure.
+```swift
+let numbers = [1, 2, 3, 4]
+let numberSum = numbers.reduce(0, { $0 + $1 })
+// numberSum == 10
