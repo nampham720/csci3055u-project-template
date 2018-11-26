@@ -65,7 +65,7 @@ Swift also supports **tuples**
 let http404Error = (404, "Not Found")
 // http404Error is of type (Int, String), and equals (404, "Not Found")
 ```
-A tuple in swift can be _decompose_ or part of the tuple can be (using an underscore):
+A tuple can be decomposed, and part of the tubple can be omitted (by using an underscore _ ):
 ```swift
 let (statusCode, statusMessage) = http404Error
 print("The status code is \(statusCode)")
@@ -225,3 +225,33 @@ __reduce(initialResult, nextPartialRestul)__: returns the result of combining th
 let numbers = [1, 2, 3, 4]
 let numberSum = numbers.reduce(0, { $0 + $1 })
 // numberSum == 10
+```
+__Regular Expression (regex)__: Swift supports regex by applying method [NSRegularExpression](https://developer.apple.com/documentation/foundation/nsregularexpression). <br />
+Example:
+```swift
+func matches(for regex: String, in text: String) -> [String] {
+    do {
+        let regex = try NSRegularExpression(pattern: regex)
+        let results = regex.matches(in: text,
+                                range: NSRange(text.startIndex..., in: text))
+        let finalResult = results.map {
+            String(text[Range($0.range, in: text)!])
+        }
+        return finalResult
+    } catch let error {
+        print("invalid regex: \(error.localizedDescription)")
+        return []
+       }
+    }
+    
+    
+let regex = "(#/{0,1}\\d{1,}#\\*{0,2})"
+// Mutable string because replaceMatches method on regex taken NSMutableString as an input
+var value: NSMutableString = "We are big now #1#**lot of sales#/1#* the money and cards #2#Rober Langdon and Ambra Vidal#/2#**."
+let allMatches = matches(for: regex, in: value as String)
+// Will print
+//- 0 : "#1#**"
+//- 1 : "#/1#*"
+//- 2 : "#2#"
+//- 3 : "#/2#**"
+```
