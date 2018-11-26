@@ -196,6 +196,7 @@ add = {
 let result = add(20, 20) // 40
 ```
 _Shorthand closure expression_ is very useful in terms of readibility and efficiency. <br />
+#### Filter, Reduce, Map, Regular Expression
 Swift also supports some built-in functions such as: `filter`, `reduce`, and `map`. <br />
 __Filter__: loops over a collection and returns the value that matches the condition(s).
 ```swift
