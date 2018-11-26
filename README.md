@@ -197,7 +197,7 @@ let result = add(20, 20) // 40
 ```
 _Shorthand closure expression_ is very useful in terms of readibility and efficiency. <br />
 #### Filter, Reduce, Map, Regular Expression
-Swift also supports some built-in functions such as: `filter`, `reduce`, and `map`. <br />
+
 __Filter__: loops over a collection and returns the value that matches the condition(s).
 ```swift
 let digits = [1,4,10,15]
@@ -215,7 +215,7 @@ let cars = peopleArray.map({ $0.cars })
 print(cars)
 // Result: [["i20", "Swift VXI"], ["Crita", "Swift VXI"], []]
 ```
-__flatMap__: same as _map_ but returns an array contaning the concatenated results and will ignore _nil_ values.  
+__flatMap__: same as _map_ but returns only one array contaning the concatenated results and will ignore _nil_ values (pay attention to the difference in the result).
 ```swift
 let flatCars = peopleArray.flatMap({ $0.cars })
 print("Flatmap: \(flatCars)")
@@ -247,8 +247,9 @@ func matches(for regex: String, in text: String) -> [String] {
     
     
 let regex = "(#/{0,1}\\d{1,}#\\*{0,2})"
-// Mutable string because replaceMatches method on regex taken NSMutableString as an input
+// Mutable string because replaceMatches method on regex takes NSMutableString as an input
 var value: NSMutableString = "We are big now #1#**lot of sales#/1#* the money and cards #2#Rober Langdon and Ambra Vidal#/2#**."
+
 let allMatches = matches(for: regex, in: value as String)
 // Will print
 //- 0 : "#1#**"
