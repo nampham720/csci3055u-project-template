@@ -175,7 +175,7 @@ reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in
 __Shorthand Arguments__ used to refer to the values of closures' arguments by the names `$0, $1, $2` and so on. <br />
 ```swift
 reversedNames = names.sorted(by: { $0 > $1 } )
-//easier to reaed and understand
+//easier to read and understand
 ```
 Notice that the `in` keyword can also be omitted when using shorthand arguments, because closure expression is made up entirely of its body. <br />
 Example: 
