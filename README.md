@@ -44,6 +44,7 @@ var red = 10 // Int
 var red: Double //Double 
 ```
 Syntax for a comment is: ``//``, ``/* ... */`` <br />
+
 Swift a case sensitive language. Therefore, variable ``Man`` and ``man`` are different. <br />
 ### Whitespaces <br />
 Whitespaces are not required, however, they are must be equal if applied.
@@ -84,6 +85,7 @@ print("The status code is \(http404Error.0)")
 A range in Swift is defined as: ``(a...b)``, ``(a..<b)`` or ``[..a]``, ``[a..]``<br />
 ### Functions
 Swift requires programmer to be clear about the return type when declaring a function. <br /> 
+
 Syntax: ``func <name>(*parameter*) -> <return type> {*body*}``
 ```swift
 func sayHelloWorld() -> String {
@@ -128,7 +130,9 @@ func minMax(array: [Int]) -> (min: Int, max: Int)? { *same as above* }
 // This will return nil when the array is empty
 ```
 Arguments of function in Swift can be labeled or omitted. <br />
+
 Syntax to label parameter: ``func <name>(label <paratmeter>: <type>) {}`` <br />
+
 Syntax to omit parameter: ``func <name>(_ <paratmeter>: <type>) {}``<br />
 ## About the tools
 ### Compiler
@@ -153,7 +157,9 @@ Standard library of Swift can be devided into:
 ### Examples about Standard Library Core
 #### Closure Expression
 __Closure Expression__ is a shorter version of function-like constructs without a full declaration and name. This is a way to write inline closures in a brief, focused syntax. Closure expressions provide several syntax optimizations for writing closures in a shortened form without loss or clarity or intent. <br /> 
+
 Syntax: ``{ (parameters) -> (return type) in (statements) }`` <br />
+
 Example below illustrates Closure Expression by breaking down the function using `sorted(by:)` method:  
 ```swift
 let names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
