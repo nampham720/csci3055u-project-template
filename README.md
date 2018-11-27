@@ -257,3 +257,11 @@ let allMatches = matches(for: regex, in: value as String)
 //- 2 : "#2#"
 //- 3 : "#/2#**"
 ```
+### About open source library
+Swift is welcome any contribution from the community through the [open discussion site](https://forums.swift.org/c/evolution/discuss). <br /> 
+
+There is a [proposal site](https://forums.swift.org/c/evolution/proposal-reviews) where every proposal will be evaluated by both the inventers and the programmer community. <br />
+
+One of the latest contributions to the Standard Library is by _Ben Cohen_ in _Remove Some Customization Points from the Standard Library's Collection Hierarchy_ (retrieved [here](https://github.com/apple/swift-evolution/blob/master/proposals/0232-remove-customization-points.md)). 
+
+## Analysis of the language
