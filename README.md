@@ -271,3 +271,50 @@ There is a [proposal site](https://forums.swift.org/c/evolution/proposal-reviews
 One of the latest contributions to the Standard Library is by _Ben Cohen_ in _Remove Some Customization Points from the Standard Library's Collection Hierarchy_ (retrieved [here](https://github.com/apple/swift-evolution/blob/master/proposals/0232-remove-customization-points.md)). 
 
 ## Analysis of the language
+### Programming Style
+Swift is a __functional__ programming language because of these basic features:
+* __Immutability__: Swift allows programmers to create a constant, which means the value of a variable will not be changed throughout the program. This helps a function whose parameters are constant will be **free of side-effect**. The function, therefore, would not alter any elements outside itself. 
+* __Value type__: pretty much everything within the Standard Library is struct. This means whenever a value is passed to struct, and when struct is used to set other objects, the value is affected directly inside that struct/object instead of reference types. Example:
+```swift
+var box = CGRect.zero
+var square = box.size
+box.size.height = 10
+// square: width: 0, height: 0
+// box.size: width: 0, height: 10
+```
+> If _CGRect_ and _CGSize_ are reference types:
+```swift
+box.size.height = 10
+// square: width: 0, height: 10
+// box.size: width: 0, height: 10
+```
+* __Function__: This includes:
+__Pure function__: a function that its return value is only determined by the input without any observable side-effects. It does only one thing: compute the return value. 
+```swift
+func sum(_ a: Int, _ b: Int) -> Int { 
+    return a + b 
+}
+```
+**First-class function**: functions can be assigned to variables.
+```swift
+func sayHello() {
+    print("Hi!")
+}
+let greeting = sayHello
+greeting() //print "Hi!"
+```
+**High-order function**: a function that satisfies either one of two conditions: 
+* _Use a function as an argument._
+* _Return another function._
+```swift
+func inside() -> Void { 
+    print("Yo!")
+}
+func outside(inner: () -> Void) { 
+    inner()
+}
+outside(inside)
+//prints: Yo!
+```
+> 
+### Metaprogramming
