@@ -282,7 +282,7 @@ box.size.height = 10
 // square: width: 0, height: 0
 // box.size: width: 0, height: 10
 ```
-> If _CGRect_ and _CGSize_ are reference types:
+If _CGRect_ and _CGSize_ are reference types:
 ```swift
 box.size.height = 10
 // square: width: 0, height: 10
@@ -317,4 +317,29 @@ outside(inside)
 //prints: Yo!
 ```
 > 
-### Metaprogramming
+### Meta-programming
+Swift supports meta-programming with [**Sourcery**](https://github.com/krzysztofzablocki/Sourcery)<br />
+
+One of the recognizable features of meta-programming is the ability to copy and paste code scientifically. <br />
+
+Here are some basic examples available in GitHub: 
+```swift
+struct Car {
+  
+  let model: String
+  let numberOfSeats: Int
+  let color: UIColor
+  
+}
+```
+We may want to compare out `Car` struct in various places, therefore, we extent it to conform the _Equatable_ protocol:
+```swift
+extension Car : Equatable {
+  
+  func ==(lhs: Car, rhs: Car) -> Bool {
+    return lhs.model == rhs.model &&
+        lhs.numberOfSeats == rhs.numberOfSeats &&
+        lhs.color == rhs.color
+  } 
+}
+```
