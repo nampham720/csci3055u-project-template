@@ -35,10 +35,11 @@ var <name> = <value>
 _let_ must be assigned with a value while _var_ needs not. Unicode can also be used.
 ```swift 
 let π = 3.14159
+let 🐶🐮 = "dogcow"
 var red, green, blue: Double
 ```
 Automatically the type of the variable will be inferred. However, it can be declared when initializing. The syntax is: <br /> 
-``var <name>:<type>``
+``var <name>: <type>``
 ```swift
 var red = 10 // Int 
 var red: Double //Double 
@@ -270,6 +271,12 @@ There is a [proposal site](https://forums.swift.org/c/evolution/proposal-reviews
 
 One of the latest contributions to the Standard Library is by _Ben Cohen_ in _Remove Some Customization Points from the Standard Library's Collection Hierarchy_ (retrieved [here](https://github.com/apple/swift-evolution/blob/master/proposals/0232-remove-customization-points.md)). 
 
+### Specialized library
+
+There are tens of useful libraries for programmers to work with Swift: from working with UI to manipulate the dataset (retrieved [here](https://github.com/Wolg/awesome-swift))<br />
+
+One of which is the library to work with JSON named SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON <br />
+
 ## Analysis of the language
 ### Programming Style
 Swift is a __functional__ programming language because of these basic features:
@@ -320,9 +327,11 @@ outside(inside)
 ### Meta-programming
 Swift supports meta-programming with [**Sourcery**](https://github.com/krzysztofzablocki/Sourcery)<br />
 
+Syntax: `$ ./sourcery <source> <templates> <output>`
+
 One of the recognizable features of meta-programming is the ability to copy and paste code scientifically. <br />
 
-Here are some basic examples available in GitHub: 
+Here are some basic examples available on GitHub: 
 ```swift
 struct Car {
   
@@ -343,3 +352,34 @@ extension Car : Equatable {
   } 
 }
 ```
+However, imagine the case of 10 car objects that we want to deploy the struct, we can write a template with [Stencil](https://github.com/stencilproject/Stencil): 
+```swift
+{% for type in types.structs %}
+extension {{ type.name }} : Equatable {}
+func ==(lhs: {{ type.name }}, rhs: {{ type.name }}) -> Bool
+{
+	{% for var in type.variables %}
+	guard lhs.{{ var.name }} == rhs.{{ var.name }} else { return false }
+	{% endfor %}
+	return true
+}
+
+{% endfor %}
+```
+It is time now to use `sourcery` to apply the _template_ created on the file _Car.swift_. This is the result that is auto generated: 
+```swift
+extension Car : Equatable {}
+func ==(lhs: Car, rhs: Car) -> Bool
+{
+	guard lhs.model == rhs.model else { return false }
+	guard lhs.numberOfSeats == rhs.numberOfSeats else { return false }
+	guard lhs.color == rhs.color else { return false }
+	return true
+}
+```
+### Symbol Resolution and Closure
+As mentioned above, Swift is quite flexible regarding symbol resolution (**Syntax** examples) and closure (**Standard Library** example). <br />
+
+Besides allowing programmers to apply Unicode when naming a vairable or constant, Swift also allows programmers to do the same with reserved keyword by surrounding the variable/constant with backticks (\`). However, it is recommended to not use such names unless there is an absolute reason to do so. <br />
+
+### Scoping rules
