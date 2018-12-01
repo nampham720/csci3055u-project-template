@@ -378,7 +378,7 @@ func ==(lhs: Car, rhs: Car) -> Bool
 }
 ```
 ### Symbol Resolution and Closure
-As mentioned above, Swift is quite flexible regarding symbol resolution (**Syntax** examples) and closure (**Standard Library** example). <br />
+As mentioned above, Swift is quite flexible regarding symbol resolution (**Syntax** examples) and closure (**Standard Library** examples). <br />
 
 Besides allowing programmers to apply Unicode when naming a vairable or constant, Swift also allows programmers to do the same with reserved keyword by surrounding the variable/constant with backticks (\`). However, it is recommended to not use such names unless there is an absolute reason to do so. <br />
 
