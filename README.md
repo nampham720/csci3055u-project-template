@@ -8,50 +8,50 @@ Swift was developed by **Chris Lattner** in 2010, in cooperation with other prog
 
 Swift was first introduced to the community on September 9, 2014 in Apple Worldwide Developers Conference. The version 1.0 was released on the same day, along with Gold Master of Xcode 6.0 for iOS. Swift 1.1 was introduced October 22, 2014. Since then, Swift has received a lot of considerations among the developer community and perceived as one of the most advanced languages to develop nowadays. 
 
-Though being a latest programming language, Swift was voted as the _Most Loved Programming Language_ according to _Stack Overflow Developer Survey 2015_. The success of the language has also drawn the attention from Google that they consider to deploy to language to develop their Android devices. <br /> 
+Though being a latest programming language, Swift was voted as the _Most Loved Programming Language_ according to _Stack Overflow Developer Survey 2015_. The success of the language has also drawn the attention from Google that they consider to deploy to language to develop their Android devices as well. <br /> 
 
 ### Some interesting features <br />
-Similar to C, Swift uses variables to store and refer to values by an identifying name. Howeverr, Swift manipulates it better. Swift makes extensive use of constants compared to C or Objective-C. Constants are used throughout Swift to make code safer and clearer. <br />
+Similar to C, Swift uses variables to store and refer to values by an identifying name. However, Swift manipulates it better. Swift makes extensive use of constants compared to C or Objective-C. Constants are used throughout Swift to make code safer and clearer. <br />
 
-Even thought it is based on C and Objective-C, Swift does not require a semicolon at the end of a command (as long as there is no other commands following) <br/>
+The difference from Objective-C is that Swift does not require a semicolon at the end of a command (as long as there is no other commands following) <br/>
 ```swift
 print("test!");
 print("test!")
 // both print: test!
 ```
-Swift also introduces ``optional types``, which handle the absence of a value. Using this functions 
+Swift also introduces ``optional types``, which handles the absence of a value. Using this functions 
 is similar to using ``nil`` with pointers in Objective-C, but it is applicable for any type in Swift. <br />
 
-Swift is a type-safe language, which means the language is clear in indicating which type of value you are working with. 
-If part of the code requires a _String_, type-safety prevents you from passing it an _Int_. Type safety helps you catch and fix errors as early as possible in the developement process.  <br />
+Swift is a type-safe language, which means the language is clear at indicating the type of value. If part of the code requires a _String_, type-safety prevents programmer from passing it an _Int_. Type safety helps to catch and fix errors as early as possible in the developement process.  <br />
 
 ## About the syntax
 ### Variable and types 
-Using _let_ and _var_ to declare a constant and a variable repsectively. <br />
+Using `let` and `var` to declare a constant and a variable repsectively. <br />
 ```swift
 let <name> = <value>
 var <name> = <value>
 ```
-_let_ must be assigned with a value while _var_ needs not. Unicode can also be used.
+While `let`  must be assigned with a value, `var` needs not. Besides, unicode can also be assigned with a value.
 ```swift 
-let π = 3.14159
+let π = 3.14159 
 let 🐶🐮 = "dogcow"
 var red, green, blue: Double
 ```
-Automatically the type of the variable will be inferred. However, it can be declared when initializing. The syntax is: <br /> 
-``var <name>: <type>``
+Automatically the type of the variable will be inferred. However, it can also be declared when initializing. <br />
+
+The syntax is: ``var <name>: <type>``
 ```swift
 var red = 10 // Int 
 var red: Double //Double 
 ```
 Syntax for a comment is: ``//``, ``/* ... */`` <br />
 
-Swift a case sensitive language. Therefore, variable ``Man`` and ``man`` are different. <br />
-### Whitespaces <br />
+Swift a case sensitive language. Therefore, variables ``Man`` and ``man`` are different. <br />
+### Whitespaces 
 Whitespaces are not required, however, they are must be equal if applied.
 ```swift
-int fruit = apples +oranges    //is a wrong statement
-int fruit = apples + oranges   //is a Correct statement
+int fruit = apples +oranges    // wrong statement
+int fruit = apples + oranges   // correct statement
 ```
 ### Optionals
 When a value may be absent, **optionals** is used: ``var <name>: <type>?``
@@ -62,7 +62,7 @@ var serverResponseCode: Int? = 404
 // serverResponseCode contains an actual Int value of 404
 ```
 ### Tuples
-Swift also supports **tuples**
+Swift also supports **tuples**.
 ```swift
 let http404Error = (404, "Not Found")
 // http404Error is of type (Int, String), and equals (404, "Not Found")
@@ -73,11 +73,11 @@ let (statusCode, statusMessage) = http404Error
 print("The status code is \(statusCode)")
 // Prints "The status code is 404"
 
-let (justTheStatusCode, _) = http404Error
-print("The status code is \(justTheStatusCode)")
+let (statusCode, _) = http404Error
+print("The status code is \(statusCode)")
 // Prints "The status code is 404"
 ```
-It can also be accessed by using index:
+Tuple's components can also be accessed by using index:
 ```swift
 print("The status code is \(http404Error.0)")
 // Prints "The status code is 404"
@@ -98,8 +98,7 @@ print(sayHelloWorld())
 Function is quite dynamic in Swift. A function can take another function as a parameter, have multiple return types (or zero). _Optinals_ can be used as a return type <br />
 ```swift
 // A function with no return value
-func greet(person: String) 
-    {
+func greet(person: String) {
         print("Hello, \(person)!")
     }
 
@@ -132,9 +131,30 @@ func minMax(array: [Int]) -> (min: Int, max: Int)? { *same as above* }
 ```
 Arguments of function in Swift can be labeled or omitted. <br />
 
-Syntax to label parameter: ``func <name>(label <paratmeter>: <type>) {}`` <br />
-
+Syntax to label a parameter: ``func <name>(label <paratmeter>: <type>) {}`` <br />
 Syntax to omit parameter: ``func <name>(_ <paratmeter>: <type>) {}``<br />
+```swift
+func greet(person: String, hometown: String) -> String {
+    return "Hello \(person)!  Glad you could visit from \(hometown)."
+}
+
+//normal call
+greet(person: "John", hometown: "Canada") 
+
+//label 
+func greet(who person: String, from hometown: String) -> String {
+    return "Hello \(person)!  Glad you could visit from \(hometown)."
+}
+
+greet(who: "John", from: "Canada")
+
+//omit
+func greet(_ person: String, _ hometown: String) -> String {
+    return "Hello \(person)!  Glad you could visit from \(hometown)."
+}
+
+greet("John", "Canada")
+```
 ## About the tools
 ### Compiler
 Swift complier contains these phases: <br />
@@ -179,7 +199,7 @@ reversedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in
 })
 //also return [Ewa, Daniella, Chris, Barry, Alex]
 ```
-__Shorthand Arguments__ used to refer to the values of closures' arguments by the names `$0, $1, $2` and so on. <br />
+__Shorthand Arguments__ used to refer to the values of closures' arguments by the signatures `$0, $1, $2` and so on. <br />
 ```swift
 reversedNames = names.sorted(by: { $0 > $1 } )
 //easier to read and understand
@@ -255,7 +275,7 @@ func matches(for regex: String, in text: String) -> [String] {
     
 let regex = "(#/{0,1}\\d{1,}#\\*{0,2})"
 // Mutable string because replaceMatches method on regex takes NSMutableString as an input
-var value: NSMutableString = "We are big now #1#**lot of sales#/1#* the money and cards #2#Rober Langdon and Ambra Vidal#/2#**."
+var value: NSMutableString = "#1#**lot of sales#/1#* the money and cards #2#Rober Ambra#/2#**."
 
 let allMatches = matches(for: regex, in: value as String)
 // Will print
@@ -279,8 +299,8 @@ One of which is the library to work with JSON named SwiftyJSON: https://github.c
 
 ## Analysis of the language
 ### Programming Style
-As discussed above about what features the **Standard Library** supports, Swift is a __functional__ programming language. Function is highly recommended when programming in Swift in order to avoid mutability and divide the task into readable and traceable blocks. For more details:
-* __Immutability__: Swift allows programmers to create a constant. This helps a function whose parameters are constant will be **free of side-effect**. The function, therefore, would not alter any elements outside itself. 
+As discussed above about what features the **Standard Library** supports, Swift is a __functional__ programming language. Function is highly recommended when programming in Swift in order to avoid mutability and divide the task into readable and traceable blocks. 
+* __Immutability__: Swift allows programmers to create a constant. This helps a function whose parameters are constant will be **free of side-effect**. The function, therefore, would not alter any elements outside its scope. 
 * __Value type__: pretty much everything within the Standard Library is struct. This means whenever a value is passed to struct, and when struct is used to set other objects, the value is affected directly inside that struct/object instead of reference types. Example:
 ```swift
 var box = CGRect.zero
@@ -323,7 +343,6 @@ func outside(inner: () -> Void) {
 outside(inside)
 //prints: Yo!
 ```
-> 
 ### Meta-programming
 Swift supports meta-programming with [**Sourcery**](https://github.com/krzysztofzablocki/Sourcery)<br />
 
@@ -341,7 +360,7 @@ struct Car {
   
 }
 ```
-We may want to compare out `Car` struct in various places, therefore, we extent it to conform the _Equatable_ protocol:
+We may want to compare our `Car` struct in various places, therefore, we extent it to conform the _Equatable_ protocol:
 ```swift
 extension Car : Equatable {
   
@@ -366,7 +385,7 @@ func ==(lhs: {{ type.name }}, rhs: {{ type.name }}) -> Bool
 
 {% endfor %}
 ```
-It is time now to use `sourcery` to apply the _template_ created on the file _Car.swift_. This is the result that is auto generated: 
+It is time now to use `sourcery` to apply the _template_ created on the file _Car.swift_. This is the result: 
 ```swift
 extension Car : Equatable {}
 func ==(lhs: Car, rhs: Car) -> Bool
@@ -384,10 +403,8 @@ Besides allowing programmers to apply Unicode when naming a vairable or constant
 
 ### Scoping rules
 There are two types of scopes in Swift: _top-level scope_ or _global scope_ and _local or nested scope_. <br />
-* __Global scope__: 
-By default, any variable declaration (including constants etc.) will be positioned at the _top-level scope_. This means it is accessible from code in any source file within the same module. Using _global scope_ is considered bad practice, because any change in the _global scope_ can lead to unexpected effects in an unrelated part of an application. This is the resouce of bugs that is hard to find and fix. 
-* __Local/nested scope__:
-Local scope are subsets of global scope with boundaries. Any object, function or method etc. will form a local scope, so does code block. This means any declaration within the local scope can only be accessed from the inner scope. 
+* __Global scope__: By default, any variable declaration (including constants etc.) will be positioned at the _top-level scope_. This means it is accessible from code in any source file within the same module. Using _global scope_ is considered bad practice, because any change in the _global scope_ can lead to unexpected effects in an unrelated part of an application. This is the resouce of bugs that is hard to find and fix. 
+* __Local/nested scope__: Local scope are subsets of global scope with boundaries. Any object, function or method etc. will form a local scope, so does code block. This means any declaration within the local scope can only be accessed from the that scope. 
 <br /> 
 
 Example: 
@@ -410,7 +427,7 @@ func outerFunction() {
 
 outerFunction()
 ```
-In a simple word, it can be understood as: "three" is the 1st-level scope, "two" is the 2nd-level scope inside outerFunction, and "one" is the innermost-scope inside if-statement in the outerFunction. 1st-level can be called from anywhere, 2nd-level can only be called anywhere **inside** the outerFunction, and 3rd-level can only be called inside its if-statement block code. <br />
+In a simple word, it can be understood as: "three" is the 1st-level scope, "two" is the 2nd-level scope inside outerFunction, and "one" is the innermost-scope inside if-statement in the outerFunction. 1st-level can be called from **anywhere**, 2nd-level can only be called anywhere **inside** the outerFunction, and 3rd-level can only be called inside its if-statement block code. <br />
 
 Another example: 
 ```swift
@@ -429,14 +446,14 @@ print("x outside myFunc equals:\(x)")
 //20
 //10
 ```
-This is called **shadowing**. The same declaration for variable x can have two differents value because they belong to different scopes. While the first `x = 10` is a global variable, `let x = 20` belongs to `myFunc()`'s scope and only functions under the value of 20 inside `myFunc()`. Once the scope is terminated, `x` goes back to its default value (= 10). <br />
+This is called **shadowing**. The same declaration for variable x can have two differents value because they belong to different scopes. While the first `let x = 10` is a global variable, `let x = 20` belongs to `myFunc()`'s scope and only functions under the value of 20 inside `myFunc()`. Once the scope is terminated, `x` goes back to its default value (= 10). <br />
 
 **Namespace** plays an important role in differing scopes. Two items with same name but different values will cause en error if they are located in the same namespace. 
 ```swift
 var x = 4
 var x = 6 // error
 ```
-An error is thrown because the variable `x = 4` has been declared by default in the top-level scope, _user_ namespace, and has been reserved a place in the memory. Declaring another variable `x = 6` with the same name, in the same namespace and scope, will "confuse" the compiler at deciding which value to choose. 
+An error is thrown because the variable `x = 4` has been declared by default in the top-level scope, _user_ namespace, and has been reserved a place in the memory. Declaring another variable `x = 6` with the same name, in the same namespace and scope, will "confuse" the compiler to decide which value to choose. 
 ### System type: Static and Dynamic
 Swift is believed static because Compiler has the ability to detect error at the _compile time_. <br />
 
@@ -449,10 +466,23 @@ let width = label + String(x) // The width is 4 -> Because both constants have t
 ```
 An example of _namespace_ in the previous section is a clear proof of this trait: `var x = 4` and `var x = 6` will throw an error because the memory has been allocated for `x = 4`.  <br />
 
-However, there are moments Swift performs as dynamically typed language, for example, when assigning a value for a variable. It is not required to scecify the type of the variable, and the compiler will infer its type later. Example: `var x = 4`, x will be referred to its type later. <br />
+However, there are moments Swift performs as dynamically typed language, for example, when assigning a value for a variable. It is not required to scecify the type of the variable, and the compiler will infer its type automatically later. Example: `var x = 4`, x will be referred to Int type. <br />
 
 Briefly, since Swift is a functional programming language, and declaring types of arguments is strictly required, Swift is considered to be "more" static than dynamic. 
 
 ### Strengths and Weaknesses
-
-
+#### Strengths:
+1. **Readibility**: even though being developed on the Objective-C platform, Swift offers programmers a cleaner syntax. This includes dropping semicolon at the end of lines or parantheses.
+2. **Fast**: speed must be borne in mind as one of the most important keys of Swift. As [tested by Apple](https://www.apple.com/swift/) Swift is 2.6x faster than Objective-C and 8.4x than Python. 
+3. **Safety and Performance**: In order for the code to be readable, Swift requires programmers to follow its strongly type format. This means, since everything has to be declared in advance, Swift can minimalize a number of unexpected errors. Besides, Swift's error handling helps prevent code crashes and errors in production. Moreoever, Swift has a shorter feedback loop, which allows programmers to see the errors in the code instantly and fix them on the fly.
+4. **Open source**: Acknowledging the imperfect of the language, Swift developers welcome contributions from the community and an abundance of third-party tools to make it complete. This means programmers are flexible to decide either **static** or **dynamic** libraries to choose when coding. Such combination helps decrease the memory storage and boost up the speed. 
+5. **Automatic Memory Counting (ARC)**: ARC is the techonology aimed to add a garbage collector function. This keeps track of information such as relationship between the code, instances, then dealloactes those stored memories if they are no longer in use. This both decreases the memory footprint and adds up to 20% to CPU. 
+6. **Interoperability**: Since developed on the Objective-C platform, Swift is perfectly compatible with Objective-C and can be used interchangeably within the same project.  
+5. **Full stack potential**: Voted as the most loved programming language (2015), the potential of Swift at full stack developing is huge. [IBM has also successfully pushed](https://developer.ibm.com/swift/) the language into cloud-server. Moreover, Swift has expanded its support to not only iOS devices but also Linux-based system. 
+#### Weaknesses:
+1. **Age**: The language is quite young, therefore, issues are unavoidable. It takes time for developers to complete it. Additionally, the amount of "native" libraries and tools are limited compared to other well-known languages, because many of them got outdated when there is a new release. 
+2. **Unstability**: As mentioned, once a new release is launched, old tools become useless. This makes Swift unstable in terms of determining its target. Even though the problems have been configured in Swift 4.0, some third-libraries still have not been updated yet. This means these changes must be fixed manually. It will cause a big problem if a project is (too) large. 
+3. **Community**: Though voted as the most loved programming language, Swift is not having as many talents devoting in it as in other languages, such as C, Java, Python etc. ([StackOverFlow developer survey](https://insights.stackoverflow.com/survey/2018)).
+4. **Poor interoperability and third-party Integrated Development Environment (IDE)**: As mentioned above, it is hard to find the right tools to work with the certain tasks at the moment. In addition to that, the official Apple IDE, XCode, is often reported with issues such as syntax highlighting, autocomplete, refactoring tools, and compilers. 
+5. **Lack of support for earlier iOS version**: Because the language was announced in 2014, and even though its interoperabilbity with Objective-C, Swift only supports iOS version 7.0 and later. However, this will not be serious problem since only less than 5% of Apple devices running on iOS 6. or earlier (source: [david-smith](https://david-smith.org/iosversionstats/)).
+![image](https://www.altexsoft.com/media/2017/06/ios-versions.png)
