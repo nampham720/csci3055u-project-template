@@ -388,7 +388,9 @@ There are two types of scopes in Swift: _top-level scope_ or _global scope_ and 
 By default, any variable declaration (including constants etc.) will be positioned at the _top-level scope_. This means it is accessible from code in any source file within the same module. Using _global scope_ is considered bad practice, because any change in the _global scope_ can lead to unexpected effects in an unrelated part of an application. This is the resouce of bugs that is hard to find and fix. 
 * __Local/nested scope__:
 Local scope are subsets of global scope with boundaries. Any object, function or method etc. will form a local scope, so does code block. This means any declaration within the local scope can only be accessed from the inner scope. 
-<br /> Example: 
+<br /> 
+
+Example: 
 ```swift
 let three = 3 // global scope by default
 print(three) 
