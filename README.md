@@ -280,7 +280,7 @@ One of which is the library to work with JSON named SwiftyJSON: https://github.c
 ## Analysis of the language
 ### Programming Style
 Swift is a __functional__ programming language because of these basic features:
-* __Immutability__: Swift allows programmers to create a constant, which means the value of a variable will not be changed throughout the program. This helps a function whose parameters are constant will be **free of side-effect**. The function, therefore, would not alter any elements outside itself. 
+* __Immutability__: Swift allows programmers to create a constant. This helps a function whose parameters are constant will be **free of side-effect**. The function, therefore, would not alter any elements outside itself. 
 * __Value type__: pretty much everything within the Standard Library is struct. This means whenever a value is passed to struct, and when struct is used to set other objects, the value is affected directly inside that struct/object instead of reference types. Example:
 ```swift
 var box = CGRect.zero
@@ -383,3 +383,55 @@ As mentioned above, Swift is quite flexible regarding symbol resolution (**Synta
 Besides allowing programmers to apply Unicode when naming a vairable or constant, Swift also allows programmers to do the same with reserved keyword by surrounding the variable/constant with backticks (\`). However, it is recommended to not use such names unless there is an absolute reason to do so. <br />
 
 ### Scoping rules
+There are two types of scopes in Swift: _top-level scope_ or _global scope_ and _local or nested scope_. <br />
+* Global scope: 
+By default, any variable declaration (including constants etc.) will be positioned at the _top-level scope_. This means it is accessible from code in any source file within the same module. Using _global scope_ is considered bad practice, because any change in the _global scope_ can lead to unexpected effects in an unrelated part of an application. This is the resouce of bugs that is hard to find and fix. 
+<br />
+* Local/nested scope:
+Local scope are subsets of global scope with boundaries. Any object, function or method etc. will form a local scope, so does code block. This means any declaration within the local scope can only be accessed from the inner scope. Example: 
+```swift
+let three = 3 // global scope by default
+print(three) 
+func outerFunction() { 
+    var two = 2 // local declaration inside outerFunction
+    print(two) // works because inside the scope
+    print(three) // accessible as of global variable
+    if true {
+        var one = 1 // local declaration in the code block if-statement
+        print(one) // works 
+        print(two) // nested scope of outerFunction
+        print(three) // the top-level declaration
+    }
+    // print(one) - Error. "one" is not accessible from outer if-statement's scope. 
+}
+// print(two) - Error. "two" is not accessible from outside of outerFunction's scope.
+
+outerFunction()
+```
+In a simple word, it can be understood as: "three" is the 1st-level, "two" is the 2nd-level scope inside outerFunction, and "one" is the innermost-scope inside if-statement in the outerFunction. 1st-level can be called from anywhere, 2nd-level can only be called anywhere **inside** the outerFunction, and 3rd-level can only be called inside its if-statement block code. <br />
+
+Another example: 
+```swift
+let x = 10
+print("x outside myFunc equals \(x)") 
+func myFunc() {
+   let x = 20
+   print("x within myFunc equals: \(x)")
+}
+
+myFunc()
+print("x outside myFunc equals:\(x)")
+
+//result
+//10
+//20
+//10
+```
+This is called **shadowing**. The same declaration for variable x can have two differents value because they belong to different scopes. While the first `x = 10` is a global variable, `let x = 20` belongs to `myFunc()`'s scope and only work-able with the value of 20 inside `myFunc()`. Once the scope is terminated, `x` goes back to its default value (= 10). <br />
+
+**Namespace** plays an important role in distinguish scope. Two items with same name but different values will cause en error if they are located in the same namespace. 
+```swift
+var x = 4
+var x = 6 // error
+```
+An error is thrown because the variable _x_ has been declared by default in the top-level scope, _user_ namespace, and has been reserved a place in the memory. Declaring another variable with the same name, same namespace and scope, will "confuse" the compiler in deciding which value to choose. 
