@@ -408,7 +408,7 @@ func outerFunction() {
 
 outerFunction()
 ```
-In a simple word, it can be understood as: "three" is the 1st-level, "two" is the 2nd-level scope inside outerFunction, and "one" is the innermost-scope inside if-statement in the outerFunction. 1st-level can be called from anywhere, 2nd-level can only be called anywhere **inside** the outerFunction, and 3rd-level can only be called inside its if-statement block code. <br />
+In a simple word, it can be understood as: "three" is the 1st-level scope, "two" is the 2nd-level scope inside outerFunction, and "one" is the innermost-scope inside if-statement in the outerFunction. 1st-level can be called from anywhere, 2nd-level can only be called anywhere **inside** the outerFunction, and 3rd-level can only be called inside its if-statement block code. <br />
 
 Another example: 
 ```swift
