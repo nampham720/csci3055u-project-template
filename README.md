@@ -431,7 +431,7 @@ print("x outside myFunc equals:\(x)")
 ```
 This is called **shadowing**. The same declaration for variable x can have two differents value because they belong to different scopes. While the first `x = 10` is a global variable, `let x = 20` belongs to `myFunc()`'s scope and only functions under the value of 20 inside `myFunc()`. Once the scope is terminated, `x` goes back to its default value (= 10). <br />
 
-**Namespace** plays an important role in distinguish scope. Two items with same name but different values will cause en error if they are located in the same namespace. 
+**Namespace** plays an important role in differing scopes. Two items with same name but different values will cause en error if they are located in the same namespace. 
 ```swift
 var x = 4
 var x = 6 // error
