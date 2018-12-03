@@ -279,7 +279,7 @@ One of which is the library to work with JSON named SwiftyJSON: https://github.c
 
 ## Analysis of the language
 ### Programming Style
-Swift is a __functional__ programming language because of these basic features:
+As discussed above about what features the **Standard Library** supports, Swift is a __functional__ programming language. Function is highly recommended when programming in Swift in order to avoid mutability and divide the task into readable and traceable blocks. For more details:
 * __Immutability__: Swift allows programmers to create a constant. This helps a function whose parameters are constant will be **free of side-effect**. The function, therefore, would not alter any elements outside itself. 
 * __Value type__: pretty much everything within the Standard Library is struct. This means whenever a value is passed to struct, and when struct is used to set other objects, the value is affected directly inside that struct/object instead of reference types. Example:
 ```swift
@@ -435,3 +435,22 @@ var x = 4
 var x = 6 // error
 ```
 An error is thrown because the variable _x_ has been declared by default in the top-level scope, _user_ namespace, and has been reserved a place in the memory. Declaring another variable with the same name, in the same namespace and scope, will "confuse" the compiler in deciding which value to choose. 
+### System type: Static and Dynamic
+Swift is believed static because Compiler has the ability to detect error at the _compile time_. <br />
+
+Furthermore, as shown in many examples before, Swift is a strongly, statically typed language. This means Swift does not accept coercion on the fly, as well as all variables, constants, functions etc. must be declared in advance, memory is not accessible after it is deallocated, etc. This is for the sake of memory safety that Swift wants to prevent unsafe behviors which could happen in the code. Example:
+```swift
+let label = "The width is "
+let x = 4
+let width = label + x // erro because label is String type and x is Integer type.
+let width = label + String(x) // The width is 4 -> Because both constants have the same String type.
+```
+An example of _namespace_ in the previous section is a clear proof of this trait: `var x = 4` and `var x = 6` will throw an error because the memory has been allocated for `x = 4`.  <br />
+
+However, there are moments Swift performs as dynamically typed language, for example, when assigning a value for a variable. It is not required to scecify the type of the variable, and the compiler will infer its type later. Example: `var x = 4`, x will be referred to its type later. <br />
+
+Briefly, since Swift is a functional programming language, and declaring types of arguments is strictly required, Swift is considered to be "more" static than dynamic. 
+
+### Strengths and Weaknesses
+
+
