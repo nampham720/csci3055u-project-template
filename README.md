@@ -436,7 +436,7 @@ This is called **shadowing**. The same declaration for variable x can have two d
 var x = 4
 var x = 6 // error
 ```
-An error is thrown because the variable `x = 4` has been declared by default in the top-level scope, _user_ namespace, and has been reserved a place in the memory. Declaring another variable `x = 6` with the same name, in the same namespace and scope, will "confuse" the compiler in deciding which value to choose. 
+An error is thrown because the variable `x = 4` has been declared by default in the top-level scope, _user_ namespace, and has been reserved a place in the memory. Declaring another variable `x = 6` with the same name, in the same namespace and scope, will "confuse" the compiler at deciding which value to choose. 
 ### System type: Static and Dynamic
 Swift is believed static because Compiler has the ability to detect error at the _compile time_. <br />
 
