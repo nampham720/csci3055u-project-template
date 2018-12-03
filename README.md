@@ -438,11 +438,11 @@ An error is thrown because the variable _x_ has been declared by default in the 
 ### System type: Static and Dynamic
 Swift is believed static because Compiler has the ability to detect error at the _compile time_. <br />
 
-Furthermore, as shown in many examples before, Swift is a strongly, statically typed language. This means Swift does not accept coercion on the fly, as well as all variables, constants, functions etc. must be declared in advance, memory is not accessible after it is deallocated, etc. This is for the sake of memory safety that Swift wants to prevent unsafe behviors which could happen in the code. Example:
+Furthermore, as shown in many examples before, Swift is a strongly, statically typed language. This means Swift does not accept coercion on the fly, as well as all variables, constants, functions etc. must be declared in advance, or memory is not accessible after it is deallocated, etc. This is for the sake of memory safety that Swift wants to prevent unsafe behviors which could happen in the code. Example:
 ```swift
 let label = "The width is "
 let x = 4
-let width = label + x // erro because label is String type and x is Integer type.
+let width = label + x // error because label is String type and x is Integer type.
 let width = label + String(x) // The width is 4 -> Because both constants have the same String type.
 ```
 An example of _namespace_ in the previous section is a clear proof of this trait: `var x = 4` and `var x = 6` will throw an error because the memory has been allocated for `x = 4`.  <br />
