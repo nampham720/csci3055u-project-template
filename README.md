@@ -200,7 +200,7 @@ __Shorthand Arguments__ used to refer to the values of closures' arguments by th
 reversedNames = names.sorted(by: { $0 > $1 } )
 //easier to read and understand
 ```
-Notice that the `in` keyword can also be omitted when using shorthand arguments, because closure expression is made up entirely of its body. <br />
+Notice that the `in` keyword can also be omitted when using shorthand arguments. <br />
 Example: 
 ```swift
 var add = { (arg1: Int, arg2: Int) -> Int in
@@ -250,7 +250,7 @@ let numbers = [1, 2, 3, 4]
 let numberSum = numbers.reduce(0, { $0 + $1 })
 // numberSum == 10
 ```
-__Regular Expression (regex)__: Swift supports regex by applying method [NSRegularExpression](https://developer.apple.com/documentation/foundation/nsregularexpression). <br />
+__Regular Expression (regex)__: Swift supports regex by applying method [NSRegularExpression](https://developer.apple.com/documentation/foundation/nsregularexpression), and it is a bit complicated to use. <br />
 Example:
 ```swift
 func matches(for regex: String, in text: String) -> [String] {
@@ -367,7 +367,7 @@ extension Car : Equatable {
   } 
 }
 ```
-However, imagine the case of 10 car objects that we want to deploy the struct, we can write a template with [Stencil](https://github.com/stencilproject/Stencil): 
+Finally, we can write a template with [Stencil](https://github.com/stencilproject/Stencil): 
 ```swift
 {% for type in types.structs %}
 extension {{ type.name }} : Equatable {}
@@ -460,17 +460,17 @@ let x = 4
 let width = label + x // error because label is of String type and x is of Integer type.
 let width = label + String(x) // The width is 4 -> Because both constants have the same String type.
 ```
-An example of _namespace_ in the previous section is a clear proof of this trait: `var x = 4` and `var x = 6` will throw an error because the memory has been allocated for `x = 4`.  <br />
+An example of _namespace_ in the previous section is a clear proof of this trait: `var x = 4` and `var x = 6` will raise an error because the memory has been allocated for `x = 4`.  <br />
 
-However, there are moments Swift performs as dynamically typed language, for example, when assigning a value for a variable. It is not required to scecify the type of the variable, and the compiler will infer its type automatically later. Example: `var x = 4`, x will be referred to Int type. <br />
+However, there are moments Swift performs as a dynamically typed language, for example, when assigning a value for a variable. It is not required to scecify the type of the variable, and the compiler will infer its type automatically later. Example: `var x = 4`, x will be referred to Int type. <br />
 
-Briefly, since Swift is a functional programming language, and declaring types of arguments is strictly required, Swift is considered to be "more" static than dynamic. 
+Briefly, since Swift is functional programming language, and declaring types of arguments is strictly required, Swift is considered to be "more" static than dynamic. 
 
 ### Strengths and Weaknesses
 #### Strengths:
 1. **Readibility**: even though being developed on the Objective-C platform, Swift offers programmers a cleaner syntax. This includes dropping semicolon at the end of lines or parantheses.
 2. **Fast**: speed must be borne in mind as one of the most important keys of Swift. As [tested by Apple](https://www.apple.com/swift/) Swift is 2.6x faster than Objective-C and 8.4x than Python. 
-3. **Safety and Performance**: In order for the code to be readable, Swift requires programmers to follow its strongly type format. This means, since everything has to be declared in advance, Swift can minimalize a number of unexpected errors. Besides, Swift's error handling helps prevent code crashes and errors in production. Moreoever, Swift has a shorter feedback loop, which allows programmers to see the errors in the code instantly and fix them on the fly.
+3. **Safety and Performance**: In order for the code to be readable, Swift requires programmers to follow its strongly typed format. This means, since everything must be declared in advance, Swift can minimalize a number of unexpected errors. Besides, Swift's error handling helps prevent code crashes and errors in production. Moreoever, Swift has a shorter feedback loop, which allows programmers to see the errors in the code instantly and fix them on the fly.
 4. **Open source**: Acknowledging the imperfect of the language, Swift developers welcome contributions from the community and an abundance of third-party tools to make it complete. This means programmers are flexible to decide either **static** or **dynamic** libraries to choose when coding. Such combination helps decrease the memory storage and boost up the speed. 
 5. **Automatic Memory Counting (ARC)**: ARC is the techonology aimed to add a garbage collector function. This keeps track of information such as relationship between the code, instances, then dealloactes those stored memories if they are no longer in use. This both decreases the memory footprint and adds up to 20% to CPU. 
 6. **Interoperability**: Since developed on the Objective-C platform, Swift is perfectly compatible with Objective-C and can be used interchangeably within the same project.  
