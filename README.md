@@ -8,10 +8,10 @@ Swift was developed by **Chris Lattner** in 2010, in cooperation with other prog
 
 Swift was first introduced to the community on September 9, 2014 in Apple Worldwide Developers Conference. The version 1.0 was released on the same day, along with Gold Master of Xcode 6.0 for iOS. Swift 1.1 was introduced October 22, 2014. Since then, Swift has received a lot of considerations among the developer community and perceived as one of the most advanced languages to develop nowadays. 
 
-Though being a latest programming language, Swift was voted as the _Most Loved Programming Language_ according to _Stack Overflow Developer Survey 2015_. The success of the language has also drawn the attention from Google that they consider to deploy to language to develop their Android devices as well. <br /> 
+In spite of being new, Swift was voted as the _Most Loved Programming Language_ according to _Stack Overflow Developer Survey 2015_. <br /> 
 
 ### Some interesting features <br />
-Similar to C, Swift uses variables to store and refer to values by an identifying name. However, Swift manipulates it better. Swift makes extensive use of constants compared to C or Objective-C. Constants are used throughout Swift to make code safer and clearer. <br />
+Similar to C, Swift uses variables to store and refers to values by an identifying name. However, Swift manipulates it better. Swift makes extensive use of constants compared to C or Objective-C. Constants are used throughout Swift to make code safer and clearer. <br />
 
 The difference from Objective-C is that Swift does not require a semicolon at the end of a command (as long as there is no other commands following) <br/>
 ```swift
@@ -22,7 +22,7 @@ print("test!")
 Swift also introduces ``optional types``, which handles the absence of a value. Using this functions 
 is similar to using ``nil`` with pointers in Objective-C, but it is applicable for any type in Swift. <br />
 
-Swift is a type-safe language, which means the language is clear at indicating the type of value. If part of the code requires a _String_, type-safety prevents programmer from passing it an _Int_. Type safety helps to catch and fix errors as early as possible in the developement process.  <br />
+Swift is a type-safe language, meaning the language is clear at indicating the type of value. If part of the code requires a _String_, type-safety prevents programmer from passing it an _Int_. Type safety helps to catch and fix errors as early as possible in the developement process.  <br />
 
 ## About the syntax
 ### Variable and types 
@@ -142,16 +142,12 @@ func greet(person: String, hometown: String) -> String {
 greet(person: "John", hometown: "Canada") 
 
 //label 
-func greet(who person: String, from hometown: String) -> String {
-    return "Hello \(person)!  Glad you could visit from \(hometown)."
-}
+func greet(who person: String, from hometown: String) -> String { (same as above) }
 
 greet(who: "John", from: "Canada")
 
 //omit
-func greet(_ person: String, _ hometown: String) -> String {
-    return "Hello \(person)!  Glad you could visit from \(hometown)."
-}
+func greet(_ person: String, _ hometown: String) -> String { (same as above) }
 
 greet("John", "Canada")
 ```
@@ -168,7 +164,7 @@ Swift complier contains these phases: <br />
 * __SIL Optimizations__: ([lib/Analysis](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Analysis), [lib/ARC](https://github.com/apple/swift/tree/master/lib/SILOptimizer/ARC), [lib/LoopTransforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/LoopTransforms) and [lib/Transforms](https://github.com/apple/swift/tree/master/lib/SILOptimizer/Transforms)) perform additional high-level, Swift-specific optimizations to the program, including (for example) Automatic Reference Counting optimizations, devirtualization, and generic specialization.
 * __LLVM IR Generation__: Intermediate Representation (IR) generation ([lib/IRGen](https://github.com/apple/swift/tree/master/lib/IRGen)) lowers SIL to LLVM IR, at which point LLVM can continue to optimize it and generate machine code.
 ### Create a project 
-In order to create a Swift project, __XCode__ and __the REPL__ are required. More information on how to install _repl_ and _create a project_ can be retrieved [here](http://www.aidanf.net/learn-swift/running_code).
+In order to create a Swift project, __XCode__ and __the REPL__ are required. Example on how to install _repl_ and _create a project_ can be retrieved [here](http://www.aidanf.net/learn-swift/running_code).
 
 ## About standard library
 Standard library of Swift can be devided into:
